@@ -1,5 +1,7 @@
 # broccoli-yaml-to-json
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/locks/broccoli-yaml-to-json.svg)](https://greenkeeper.io/)
+
 Summarize what broccoli-yaml-to-json does here.
 
 ## Usage
