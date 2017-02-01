@@ -9,15 +9,15 @@ const yaml = require('js-yaml');
 function yamlDirtoJson(inputDir, outputDir) {
   var fs = require('fs');
   var path = require('path');
-
   var files = fs.readdirSync(inputDir);
 
   for (var i in files) {
     if (path.extname(files[i]) === ".yml") {
-      var outputPath = path.join(outputDir, path.basename(files[i], '.yml'), '.json');
-      var convertedFile = yaml.safeLoad(fs.readFileSync(files[i], 'utf8'));
+      var inputPath = path.join(inputDir, files[i]);
+      var outputPath = path.join(outputDir, path.basename(files[i], '.yml')) + '.json';
 
-      fs.writeFileSync(outputPath, convertedFile);
+      var convertedFile = yaml.safeLoad(fs.readFileSync(inputPath,'utf8'));
+      fs.writeFileSync(outputPath, JSON.stringify(convertedFile, null, '\t'));
     }
   }
 }
@@ -34,6 +34,6 @@ export default class BroccoliYamlToJson extends Plugin {
   }
 
   build() {
-    yamlDirtoJson(this.inputPaths[0], this.outputDir);
+    yamlDirtoJson(this.inputPaths[0], this.outputPath);
   }
 }
